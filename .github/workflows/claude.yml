@@ -30,16 +30,7 @@ jobs:
         with:
           fetch-depth: 1
 
-      - name: Project Setup
-        run: |
-          npm run setup
-          npm run dev:daemon
-
       - name: Run Claude
         uses: anthropics/claude-code-action@v1
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
-          claude_args: |
-            --system-prompt "The project is already set up. Server is running at localhost:3000. Logs are in logs.txt. Use sqlite3 CLI for DB queries. Use mcp__playwright tools to interact with the app."
-            --allowedTools "Bash(npm:*),Bash(sqlite3:*),mcp__playwright__browser_snapshot,mcp__playwright__browser_click"
-            --mcp-config '{"mcpServers":{"playwright":{"command":"npx","args":["@playwright/mcp@latest","--allowed-origins","localhost:3000;cdn.tailwindcss.com;esm.sh"]}}}'

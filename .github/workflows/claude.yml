@@ -1,0 +1,11 @@
+name: Claude Code
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  claude:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: anthropics/claude-code-action@main
